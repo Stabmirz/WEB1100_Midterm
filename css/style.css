@@ -1,0 +1,26 @@
+body{
+    background-image: url(https://hacked.com/wp-content/uploads/2018/01/Bitcoin-digital-currency.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin : 35vh 0vw 0vh 13vw;
+    padding: 0%;
+ }
+ 
+ table {
+    background-color: whitesmoke;
+    border: 2px solid black;
+    width: 50vw;
+    
+
+ 
+ }
+ 
+ th, td {
+    background-color: rgb(5, 69, 71);
+    border: 2px solid black;
+    border-radius: 25%;
+    text-align: center;
+    font-size: 25px;
+    color: whitesmoke;
+    padding: 1vw;
+ }
