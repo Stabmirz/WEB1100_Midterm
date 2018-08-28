@@ -1,9 +1,13 @@
-const td = document.querySelectorAll("td")
-const refreshButton = document.querySelector("div1")
-const addCode =  document.querySelector("div2")
+const th = document.querySelectorAll("th");
+const td = document.querySelectorAll("td");
+const row1 = document.querySelector(".row1")
+const row2 = document.querySelector(".row2")
+const refreshButton = document.querySelector(".refresh");
+const addCode = document.querySelector(".addprice");
 //define functions and classes
 class Bitcoin {
-  constructor() {
+  constructor(nums) {
+    this.nums = nums;
     /* Create properties using this and invoke methods that should be called automatically here */
     this.td = td;
     this.getPrices();
@@ -26,36 +30,36 @@ class Bitcoin {
   setPrices(nums) {
     // console.log("Running setPrices... I should first console.log nums to see if I'm using the resources properly")
 
-    //get the prices on the screen
-    for (let nums = 1; nums <= td.length; nums++) {
-      if (nums === 1) {
-        this.td[nums].innerHTML= `${this.prices[0].rate}`;
-      } else {
+    this.nums.forEach((num, index) => {
+      this.td[index + 1].textContent = this.prices[num].rate.toFixed(2)
+      // for(var i = 0; i< this.nums.length; i++){
+      //   this.td[index + 1].textContent = this.prices[num].rate.toFixed(2)
+      // }
+    })
+}
 
-        this.td[nums].innerHTML= `${this.prices[nums].rate}`;
-      }
-    }
+  refresh() {
+    this.getPrices();
   }
+}
 
- refresh()
-    {
-      this.getPrices();
-    //  console.log(refresh);
-    }
-  }
-  function refresh(){
-    location.reload();
-   }
 
-let bitcoin = new Bitcoin();
+let bitcoin = new Bitcoin([0, 2, 3, 4, 5, 6]);
 // console.log(bitcoin);
 //adding event listeners, calling functions, and creating instances of classes
-refreshButton.addEventListener("click", e=>{
-  refresh()
+refreshButton.addEventListener("click", function() {
+  bitcoin.refresh()
 })
 
-addCode.addEventListener('click', e=>{
-  window.prompt("Enter currancy code");
+addCode.addEventListener('click', function(e) {
+ const code = window.prompt("What country are you looking for?");
+ for(var i =0; i<bitcoin.prices.length; i++){
+   if(bitcoin.prices[i].code === code.toUpperCase()){
+    //  console.log("Found it")
+   row1.innerHTML += `<td> BTC/${code.toUpperCase()}</td> `
+   row2.innerHTML += `<td> ${bitcoin.prices[i].rate.toFixed(2)}</td> `
+   }
+ }
 })
 
 
